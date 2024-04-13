@@ -4,9 +4,61 @@ I created this repository with the intention of sharing useful Compose UI modifi
 
 ## Modifier.zoomable
 
-The first one of hopefully many to come is the [zoomable](app/src/main/java/com/github/henokt/reusablecomposemodifiers/ui/utils/Modifiers.kt#L25) modifier that makes the modified element zoomable by capturing pinching and panning gestures. It also supports double-tap gesture for zooming in and out.
+The first one of many to come is the [zoomable](app/src/main/java/com/github/henokt/reusablecomposemodifiers/ui/modifiers/zoomable.kt) modifier that makes the modified element zoomable by capturing pinching and panning gestures. It also supports double-tap gesture for zooming in and out.
 
-In the following example, the `zoomable` modifier is applied to a `HorizontalPager` that lets you page through a list of images. You can see the full example [here](app/src/main/java/com/github/henokt/reusablecomposemodifiers/ui/examples/ZoomablePager.kt).
+An obvious use case for this modifier is when you want to create a zoomable image viewer as follows:
+
+```kotlin
+@Composable
+fun ZoomableImage(
+    imageUri: String,
+    modifier: Modifier = Modifier,
+) {
+    Box(modifier = Modifier) {
+        AsyncImage(
+            model = imageUri,
+            placeholder = painterResource(R.drawable.placeholder),
+            contentDescription = null,
+            alignment = Alignment.Center,
+            contentScale = ContentScale.Crop,
+            modifier = modifier
+                .fillMaxSize()
+                .zoomable(
+                    enabled = true,
+                    minScale = 1f,
+                    maxScale = 4f,
+                    panningSpeedMultiplier = 2f,
+                    doubleTapEnabled = true,
+                    doubleTapScale = 3f,
+                    animate = true,
+                    scaleAnimationSpec = spring(
+                        dampingRatio = Spring.DampingRatioLowBouncy,
+                        stiffness = Spring.StiffnessLow
+                    ),
+                    panAnimationSpec = spring(
+                        dampingRatio = Spring.DampingRatioLowBouncy,
+                        stiffness = Spring.StiffnessVeryLow
+                    ),
+                    doubleTapScaleAnimationSpec = tween(durationMillis = 500),
+                    doubleTapPanAnimationSpec = tween(durationMillis = 500),
+                ),
+            )
+        Text(
+            text = "Pinch to zoom, double-tap to zoom in/out, pan to explore zoomed image.",
+            color = Color.LightGray,
+            modifier = Modifier
+                .align(Alignment.BottomCenter)
+                .padding(16.dp)
+        )
+    }
+}
+```
+
+Here is what it will look like:
+
+![zoomable-modifier-in-action](docs/media/zoomable_image.gif)
+
+When your zoomable content is inside a container that has to detect touch gestures, like a `HorizontalPager` that relys on swipe gestures, you can apply the `zoomable` modifier to the container instead of the content. This way, the zoomable content will not interfere with the swipe gestures. Here is an example (you can see the full example [here](app/src/main/java/com/github/henokt/reusablecomposemodifiers/ui/examples/ZoomableImagePager.kt)): 
 
 ```kotlin
 HorizontalPager(
@@ -45,6 +97,6 @@ HorizontalPager(
 }
 ``` 
 
-The result is as follows:
+And here is what it will look like:
 
-![zoomable-modifier-in-action](docs/media/zoomable-modifier-demo-320px.gif)
+![zoomable-modifier-in-action](docs/media/zoomable_image_pager.gif)
