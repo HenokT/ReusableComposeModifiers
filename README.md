@@ -65,23 +65,7 @@ HorizontalPager(
     state = pagerState,
     modifier = modifier
         .fillMaxSize()
-        .padding(padding)
-        .zoomable(
-            enabled = true,
-            minScale = 1f,
-            maxScale = 4f,
-            doubleTapEnabled = true,
-            doubleTapScale = 3f,
-            animate = true,
-            scaleAnimationSpec = spring(
-                dampingRatio = Spring.DampingRatioLowBouncy,
-                stiffness = Spring.StiffnessLow
-            ),
-            panAnimationSpec = spring(
-                dampingRatio = Spring.DampingRatioLowBouncy,
-                stiffness = Spring.StiffnessVeryLow
-            )
-        ),
+        .zoomable(),
 ) { page ->
 
     val image = images[page]

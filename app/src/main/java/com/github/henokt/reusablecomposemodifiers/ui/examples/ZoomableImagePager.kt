@@ -44,25 +44,7 @@ fun ZoomableImagePager(
             state = pagerState,
             modifier = modifier
                 .fillMaxSize()
-                .zoomable(
-                    enabled = true,
-                    minScale = 1f,
-                    maxScale = 4f,
-                    panningSpeedMultiplier = 2f,
-                    doubleTapEnabled = true,
-                    doubleTapScale = 3f,
-                    animate = true,
-                    scaleAnimationSpec = spring(
-                        dampingRatio = Spring.DampingRatioLowBouncy,
-                        stiffness = Spring.StiffnessLow
-                    ),
-                    panAnimationSpec = spring(
-                        dampingRatio = Spring.DampingRatioLowBouncy,
-                        stiffness = Spring.StiffnessVeryLow
-                    ),
-                    doubleTapScaleAnimationSpec = tween(durationMillis = 500),
-                    doubleTapPanAnimationSpec = tween(durationMillis = 500),
-                ),
+                .zoomable(),
         ) { page ->
 
             val image = images[page]
