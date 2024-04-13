@@ -4,7 +4,7 @@ I created this repository with the intention of sharing useful Compose UI modifi
 
 ## Modifier.zoomable
 
-The first one of hopefully many to come is the `zoomable` modifier that makes the modified element zoomable by capturing pinching and panning gestures. It also supports double-tap gesture for zooming in and out.
+The first one of hopefully many to come is the [zoomable](app/src/main/java/com/github/henokt/reusablecomposemodifiers/ui/utils/Modifiers.kt#L25) modifier that makes the modified element zoomable by capturing pinching and panning gestures. It also supports double-tap gesture for zooming in and out.
 
 In the following example, the `zoomable` modifier is applied to a `HorizontalPager` that lets you page through a list of images. You can see the full example [here](app/src/main/java/com/github/henokt/reusablecomposemodifiers/ui/examples/ZoomablePager.kt).
 
