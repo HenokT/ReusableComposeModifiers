@@ -47,4 +47,4 @@ HorizontalPager(
 
 The result is as follows:
 
-![zoomable-modifier-in-action](https://raw.githubusercontent.com/HenokT/ReusableComposeModifiers/main/docs/media/zoomable-modifier-demo.webm)
+![zoomable-modifier-in-action](docs/media/zoomable-modifier-demo-320px.gif)
