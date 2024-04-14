@@ -15,6 +15,7 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.statusBarsPadding
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
+import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.outlined.Menu
 import androidx.compose.material3.CenterAlignedTopAppBar
@@ -35,6 +36,7 @@ import androidx.compose.runtime.remember
 import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.graphics.RectangleShape
 import androidx.compose.ui.unit.IntOffset
 import androidx.compose.ui.unit.dp
 import com.github.henokt.reusablecomposemodifiers.ui.examples.ZoomableImage
@@ -89,12 +91,20 @@ class MainActivity : ComponentActivity() {
                                         NavigationDrawerItem(
                                             label = { Text(text = example.title) },
                                             selected = example == currentExample,
+                                            shape = RoundedCornerShape(
+                                                topStartPercent = 0,
+                                                bottomStartPercent = 0,
+                                                topEndPercent = 50,
+                                                bottomEndPercent = 50
+                                            ),
                                             onClick = {
                                                 currentExample = example
                                                 scope.launch {
                                                     drawerState.close()
                                                 }
-                                            }
+                                            },
+                                            modifier = Modifier
+                                                .padding(end = 8.dp)
                                         )
                                     }
                                 }

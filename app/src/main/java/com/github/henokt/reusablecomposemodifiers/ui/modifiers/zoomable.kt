@@ -22,7 +22,7 @@ import androidx.compose.ui.unit.IntSize
 
 /**
  * Makes the modified element zoomable by capturing pinching and panning gestures. It also supports
- * double-tap gesture for zooming in and out.
+ * double-tap gesture for auto zooming in and out.
  */
 @Composable
 fun Modifier.zoomable(
